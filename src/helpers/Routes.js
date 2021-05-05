@@ -12,14 +12,12 @@ export default function Routes() {
         <Route exact path='/' component={Home} />
         <Route
           path='/add-player'
-          component={() => <AddPlayer/>}
+          component={() => <AddPlayer />}
         />
         <Route
           path='/team-roster'
-          component={() => <TeamRoster/>}
+          component={() => <TeamRoster />}
         />
-
-        <Route />
       </Switch>
     </div>
   );
