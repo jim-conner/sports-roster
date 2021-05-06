@@ -28,8 +28,8 @@ function App() {
   return (
   <>
     <Router>
-      <NavBar/>
-      <Routes/>
+      <NavBar user={user}/>
+      <Routes user={user}/>
     </Router>
   </>
   );
