@@ -8,7 +8,7 @@ export default function Home({ user }) {
       {
         user
           ? <h3>Add a player or view the Team Roster.</h3>
-          : <h3>Please sign in to view the Team Roster.</h3>
+          : <h3>Please sign in to view your Team Roster.</h3>
       }
     </div>
   );
