@@ -16,49 +16,43 @@ const NavBar = ({ user }) => {
 
   const toggle = () => setIsOpen(!isOpen);
 
-  // const authenticated = () => {
-  //   <>
-  //     <NavItem>
-  //       <Link className="nav-link" to="/add-player">Add Player</Link>
-  //     </NavItem>
-  //     <NavItem>
-  //       <Link className="nav-link" to="/team-roster">Team Roster</Link>
-  //     </NavItem>
-  //   </>;
-  // };
+  const authenticated = () => (
+    <>
+      <NavItem>
+        <Link className="nav-link" to="/add-player">ADD PLAYER</Link>
+      </NavItem>
+      <NavItem>
+        <Link className="nav-link" to="/team-roster">TEAM ROSTER</Link>
+      </NavItem>
+    </>
+  );
 
-  // const authButtons = () => {
-  //   <>
-  //     <NavItem>
-  //       {
-  //         user
-  //           ? <Button color='info' onClick={signInUser}>SIGN IN</Button>
-  //           : <Button color='danger' onClick={signOutUser}>SIGN OUT</Button>
-  //       }
-  //     </NavItem>
-  //   </>;
-  // };
+  const authButtons = () => (
+    <>
+      <NavItem>
+        {
+          user !== null
+          && <div>
+            {
+              user
+                ? <Button color='danger' onClick={signOutUser}>SIGN OUT</Button>
+                : <Button color='info' onClick={signInUser}>SIGN IN</Button>
+            }
+          </div>
+        }
+        </NavItem>
+    </>
+  );
 
   return (
     <div>
-      <Navbar color="light" light expand="md">
-        <Link className="navbar-brand" to="/">Home</Link>
+      <Navbar color="light" expand="md">
+        <Link className="navbar-brand" to="/">HOME</Link>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
-            {/* { user && authenticated() } */}
-            <NavItem>
-              {
-                user !== null
-                && <div>
-                  {
-                    user
-                      ? <Button color='danger' onClick={signOutUser}>SIGN OUT</Button>
-                      : <Button color='info' onClick={signInUser}>SIGN IN</Button>
-                  }
-                </div>
-              }
-            </NavItem>
+            { user && authenticated() }
+            { authButtons() }
           </Nav>
         </Collapse>
       </Navbar>

@@ -29,7 +29,7 @@ function App() {
   <>
     <Router>
       <NavBar user={user}/>
-      <Routes/>
+      <Routes user={user}/>
     </Router>
   </>
   );
