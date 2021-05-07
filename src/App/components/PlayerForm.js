@@ -2,13 +2,20 @@ import React, { useState } from 'react';
 import {
   Button, Form, FormGroup, Label, Input
 } from 'reactstrap';
-import addPlayer from '../../helpers/data/playersData';
+import PropTypes from 'prop-types';
+import { addPlayer } from '../../helpers/data/playersData';
 
-export default function PlayerForm() {
+export default function PlayerForm(
+  name,
+  imageUrl,
+  position,
+  firebaseKey,
+) {
   const [player, setPlayer] = useState({
-    name: '',
-    imageUrl: '',
-    position: ''
+    name: name || '',
+    imageUrl: imageUrl || '',
+    position: position || '',
+    firebaseKey: firebaseKey || ''
   });
 
   const handleInputChange = (e) => {
@@ -20,9 +27,14 @@ export default function PlayerForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // addPlayer(player).then((playersArray) => setPlayer((playersArray)));
-    addPlayer(player);
-    // console.warn(e.target.value);
+    addPlayer(player).then((playersArray) => setPlayer((playersArray)));
+
+    setPlayer({
+      name: '',
+      imageUrl: '',
+      position: '',
+      firebaseKey: ''
+    });
   };
 
   return (
@@ -66,3 +78,10 @@ export default function PlayerForm() {
   </div>
   );
 }
+
+PlayerForm.propTypes = {
+  name: PropTypes.string,
+  imageUrl: PropTypes.string,
+  position: PropTypes.string,
+  firebaseKey: PropTypes.string
+};

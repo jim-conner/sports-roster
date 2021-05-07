@@ -1,9 +1,29 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import PlayerCard from '../App/components/PlayerCard';
 
-export default function TeamRoster() {
+export default function TeamRoster({ players, setPlayers }) {
+  // console.warn(players);
   return (
-    <div>
+    <>
       <h1>Team Roster</h1>
+    <div>
+      {players.map((playerInfo) => (
+        <PlayerCard
+          key={playerInfo.firebaseKey}
+          firebaseKey={playerInfo.firebaseKey}
+          imageUrl={playerInfo.imageUrl}
+          name={playerInfo.name}
+          position={playerInfo.position}
+          setPlayers={setPlayers}
+        />
+      ))}
     </div>
+    </>
   );
 }
+
+TeamRoster.propTypes = {
+  players: PropTypes.array.isRequired,
+  setPlayers: PropTypes.func
+};

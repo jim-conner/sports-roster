@@ -5,9 +5,17 @@ import 'firebase/auth';
 import NavBar from './components/NavBar';
 import Routes from '../helpers/Routes';
 import './App.scss';
+import { getPlayers } from '../helpers/data/playersData';
 
 function App() {
   const [user, setUser] = useState(null);
+  const [players, setPlayers] = useState([]);
+
+  useEffect(() => {
+    getPlayers().then((response) => setPlayers(response));
+  }, []);
+
+  // console.warn(players);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((userInState) => {
@@ -29,7 +37,11 @@ function App() {
   <>
     <Router>
       <NavBar user={user}/>
-      <Routes user={user}/>
+      <Routes
+        user={user}
+        players={players}
+        setPlayers={setPlayers}
+      />
     </Router>
   </>
   );
