@@ -5,12 +5,13 @@ import {
 import PropTypes from 'prop-types';
 import { addPlayer } from '../../helpers/data/playersData';
 
-export default function PlayerForm(
+export default function PlayerForm({
+  setPlayers,
   name,
   imageUrl,
   position,
   firebaseKey,
-) {
+}) {
   const [player, setPlayer] = useState({
     name: name || '',
     imageUrl: imageUrl || '',
@@ -27,7 +28,7 @@ export default function PlayerForm(
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addPlayer(player).then((playersArray) => setPlayer((playersArray)));
+    addPlayer(player).then((playerArray) => setPlayers(playerArray));
 
     setPlayer({
       name: '',
@@ -41,11 +42,11 @@ export default function PlayerForm(
     <div className='player-form'>
     <Form id='addPlayerForm' autoComplete='off' onSubmit={handleSubmit}>
       <FormGroup>
-        <Label for=""></Label>
+        <Label for="name"></Label>
         <Input
           name="name"
           type="text"
-          placeholder="Name"
+          placeholder="Player Name"
           value={player.name}
           onChange={handleInputChange}
         />
@@ -55,8 +56,8 @@ export default function PlayerForm(
         <Label for="imageUrl"></Label>
         <Input
           name="imageUrl"
-          type="text"
-          placeholder="Image URL"
+          type="url"
+          placeholder="Player Image"
           value={player.imageUrl}
           onChange={handleInputChange}
         />
@@ -67,7 +68,7 @@ export default function PlayerForm(
         <Input
           name="position"
           type="text"
-          placeholder="Position"
+          placeholder="Player Position"
           value={player.position}
           onChange={handleInputChange}
         />
@@ -80,6 +81,7 @@ export default function PlayerForm(
 }
 
 PlayerForm.propTypes = {
+  setPlayers: PropTypes.func,
   name: PropTypes.string,
   imageUrl: PropTypes.string,
   position: PropTypes.string,
