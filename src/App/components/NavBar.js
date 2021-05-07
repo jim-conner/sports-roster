@@ -7,14 +7,18 @@ import {
   NavbarToggler,
   Nav,
   NavItem,
-  Button
+  Button,
+  // NavbarBrand
 } from 'reactstrap';
 import { signInUser, signOutUser } from '../../helpers/auth';
 
 const NavBar = ({ user }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
 
-  const toggle = () => setIsOpen(!isOpen);
+  // const toggle = () => setIsOpen(!isOpen);
+  const [collapsed, setCollapsed] = useState(true);
+
+  const toggleNavbar = () => setCollapsed(!collapsed);
 
   const authenticated = () => (
     <>
@@ -46,10 +50,11 @@ const NavBar = ({ user }) => {
 
   return (
     <div>
-      <Navbar color="light" expand="md">
+      <Navbar color="dark" dark expand="md">
+      {/* <NavbarBrand className="mr-auto"></NavbarBrand> */}
         <Link className="navbar-brand" to="/">HOME</Link>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
+        <NavbarToggler onClick={toggleNavbar} className="mr-2"/>
+        <Collapse isOpen={!collapsed} navbar>
           <Nav className="mr-auto" navbar>
             { user && authenticated() }
             { authButtons() }
