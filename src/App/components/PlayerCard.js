@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  // Button,
+  Button,
   CardImg,
   Card,
   CardTitle,
@@ -8,13 +8,21 @@ import {
   CardBody,
 } from 'reactstrap';
 import PropTypes from 'prop-types';
+import { deletePlayer } from '../../helpers/data/playersData';
 
 export default function PlayerCard({
+  firebaseKey,
   name,
   position,
   imageUrl,
-  // firebaseKey
+  setPlayers
 }) {
+  const handleClick = () => {
+    // console.warn(deletePlayer(firebaseKey));
+    deletePlayer(firebaseKey)
+      .then((playersArray) => setPlayers(playersArray));
+  };
+
   return (
       <Card body>
         <CardImg top
@@ -27,21 +35,22 @@ export default function PlayerCard({
           <CardText tag="h5">{position}</CardText>
           {/* <Button color='primary'onClick={() => handleClick('view')}>
             View Author
-          </Button>
-          <Button color='info' onClick={() => handleClick('edit')}>
-              {editing ? 'Close Form' : 'Edit Author' }
-          </Button>
-          <Button color='danger'onClick={() => handleClick('delete')}>
-            Delete Author
           </Button> */}
+          {/* <Button color='info' onClick={() => handleClick('edit')}>
+              {editing ? 'Close Form' : 'Edit Author' }
+          </Button> */}
+          <Button color='danger'onClick={handleClick}>
+            Delete Author
+          </Button>
         </CardBody>
       </Card>
   );
 }
 
 PlayerCard.propTypes = {
+  setPlayers: PropTypes.func,
   name: PropTypes.string.isRequired,
   position: PropTypes.string.isRequired,
   imageUrl: PropTypes.string.isRequired,
-  // firebaseKey
+  firebaseKey: PropTypes.string.isRequired
 };

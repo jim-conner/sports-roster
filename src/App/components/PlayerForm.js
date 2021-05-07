@@ -28,7 +28,7 @@ export default function PlayerForm({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addPlayer(player).then((playerArray) => setPlayers(playerArray));
+    addPlayer(player).then((playersArray) => setPlayers(playersArray));
 
     setPlayer({
       name: '',
