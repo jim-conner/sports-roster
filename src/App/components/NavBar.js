@@ -8,14 +8,10 @@ import {
   Nav,
   NavItem,
   Button,
-  // NavbarBrand
 } from 'reactstrap';
 import { signInUser, signOutUser } from '../../helpers/auth';
 
 const NavBar = ({ user }) => {
-  // const [isOpen, setIsOpen] = useState(false);
-
-  // const toggle = () => setIsOpen(!isOpen);
   const [collapsed, setCollapsed] = useState(true);
 
   const toggleNavbar = () => setCollapsed(!collapsed);

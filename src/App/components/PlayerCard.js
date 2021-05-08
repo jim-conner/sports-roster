@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Button,
   CardImg,
@@ -9,6 +9,7 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { deletePlayer } from '../../helpers/data/playersData';
+import PlayerForm from './PlayerForm';
 
 export default function PlayerCard({
   firebaseKey,
@@ -17,10 +18,19 @@ export default function PlayerCard({
   imageUrl,
   setPlayers
 }) {
-  const handleClick = () => {
-    // console.warn(deletePlayer(firebaseKey));
-    deletePlayer(firebaseKey)
-      .then((playersArray) => setPlayers(playersArray));
+  const [editNow, setEditNow] = useState(false);
+  const handleClick = (type) => {
+    switch (type) {
+      case 'delete':
+        deletePlayer(firebaseKey)
+          .then((playersArray) => setPlayers(playersArray));
+        break;
+      case 'edit':
+        setEditNow((prevState) => !prevState);
+        break;
+      default:
+        console.warn('nothing selected');
+    }
   };
 
   return (
@@ -36,11 +46,16 @@ export default function PlayerCard({
           {/* <Button color='primary'onClick={() => handleClick('view')}>
             View Author
           </Button> */}
-          {/* <Button color='info' onClick={() => handleClick('edit')}>
-              {editing ? 'Close Form' : 'Edit Author' }
-          </Button> */}
-          <Button color='danger'onClick={handleClick}>
-            Delete Author
+          <Button color='info' onClick={() => handleClick('edit')}>Edit Player
+              {editNow && <PlayerForm
+                setPlayers={setPlayers}
+                firebaseKey={firebaseKey}
+                name={name}
+                imageUrl={imageUrl}
+                position={position}
+                /> }
+          </Button>
+          <Button color='danger'onClick={() => handleClick('delete')}>Delete Author
           </Button>
         </CardBody>
       </Card>

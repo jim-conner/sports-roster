@@ -5,13 +5,13 @@ import {
 import PropTypes from 'prop-types';
 import { addPlayer } from '../../helpers/data/playersData';
 
-export default function PlayerForm({
+const PlayerForm = ({
   setPlayers,
   name,
   imageUrl,
   position,
   firebaseKey,
-}) {
+}) => {
   const [player, setPlayer] = useState({
     name: name || '',
     imageUrl: imageUrl || '',
@@ -78,7 +78,7 @@ export default function PlayerForm({
     </Form>
   </div>
   );
-}
+};
 
 PlayerForm.propTypes = {
   setPlayers: PropTypes.func,
@@ -87,3 +87,5 @@ PlayerForm.propTypes = {
   position: PropTypes.string,
   firebaseKey: PropTypes.string
 };
+
+export default PlayerForm;
