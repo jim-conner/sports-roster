@@ -3,7 +3,7 @@ import {
   Button, Form, FormGroup, Label, Input
 } from 'reactstrap';
 import PropTypes from 'prop-types';
-import { addPlayer } from '../../helpers/data/playersData';
+import { addPlayer, updatePlayer } from '../../helpers/data/playersData';
 
 const PlayerForm = ({
   setPlayers,
@@ -16,7 +16,7 @@ const PlayerForm = ({
     name: name || '',
     imageUrl: imageUrl || '',
     position: position || '',
-    firebaseKey: firebaseKey || ''
+    firebaseKey: firebaseKey || null
   });
 
   const handleInputChange = (e) => {
@@ -28,7 +28,11 @@ const PlayerForm = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addPlayer(player).then((playersArray) => setPlayers(playersArray));
+    if (player.firebaseKey) {
+      updatePlayer(player).then((playersArray) => setPlayers(playersArray));
+    } else {
+      addPlayer(player).then((playersArray) => setPlayers(playersArray));
+    }
 
     setPlayer({
       name: '',

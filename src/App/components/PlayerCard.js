@@ -12,11 +12,11 @@ import { deletePlayer } from '../../helpers/data/playersData';
 import PlayerForm from './PlayerForm';
 
 export default function PlayerCard({
+  setPlayers,
   firebaseKey,
   name,
   position,
-  imageUrl,
-  setPlayers
+  imageUrl
 }) {
   const [editNow, setEditNow] = useState(false);
   const handleClick = (type) => {
@@ -46,17 +46,18 @@ export default function PlayerCard({
           {/* <Button color='primary'onClick={() => handleClick('view')}>
             View Author
           </Button> */}
-          <Button color='info' onClick={() => handleClick('edit')}>Edit Player
-              {editNow && <PlayerForm
-                setPlayers={setPlayers}
-                firebaseKey={firebaseKey}
-                name={name}
-                imageUrl={imageUrl}
-                position={position}
-                /> }
+          <Button color='info' onClick={() => handleClick('edit')}>
+            {editNow ? 'Close Form' : 'Edit Form'}
           </Button>
           <Button color='danger'onClick={() => handleClick('delete')}>Delete Author
           </Button>
+          {editNow && <PlayerForm
+            setPlayers={setPlayers}
+            firebaseKey={firebaseKey}
+            name={name}
+            imageUrl={imageUrl}
+            position={position}
+          />}
         </CardBody>
       </Card>
   );
@@ -64,8 +65,8 @@ export default function PlayerCard({
 
 PlayerCard.propTypes = {
   setPlayers: PropTypes.func,
-  name: PropTypes.string.isRequired,
-  position: PropTypes.string.isRequired,
-  imageUrl: PropTypes.string.isRequired,
-  firebaseKey: PropTypes.string.isRequired
+  name: PropTypes.string,
+  position: PropTypes.string,
+  imageUrl: PropTypes.string,
+  firebaseKey: PropTypes.string
 };
