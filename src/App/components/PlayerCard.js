@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Button,
   CardImg,
@@ -9,22 +9,32 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { deletePlayer } from '../../helpers/data/playersData';
+import PlayerForm from './PlayerForm';
 
 export default function PlayerCard({
+  setPlayers,
   firebaseKey,
   name,
   position,
-  imageUrl,
-  setPlayers
+  imageUrl
 }) {
-  const handleClick = () => {
-    // console.warn(deletePlayer(firebaseKey));
-    deletePlayer(firebaseKey)
-      .then((playersArray) => setPlayers(playersArray));
+  const [editNow, setEditNow] = useState(false);
+  const handleClick = (type) => {
+    switch (type) {
+      case 'delete':
+        deletePlayer(firebaseKey)
+          .then((playersArray) => setPlayers(playersArray));
+        break;
+      case 'edit':
+        setEditNow((prevState) => !prevState);
+        break;
+      default:
+        console.warn('nothing selected');
+    }
   };
 
   return (
-      <Card body>
+      <Card className='customizedCard' body>
         <CardImg top
           width="100%"
           src={imageUrl}
@@ -36,12 +46,20 @@ export default function PlayerCard({
           {/* <Button color='primary'onClick={() => handleClick('view')}>
             View Author
           </Button> */}
-          {/* <Button color='info' onClick={() => handleClick('edit')}>
-              {editing ? 'Close Form' : 'Edit Author' }
-          </Button> */}
-          <Button color='danger'onClick={handleClick}>
-            Delete Author
+          <Button color='info' onClick={() => handleClick('edit')}>
+            {editNow ? 'Close Form' : 'Edit Form'}
           </Button>
+          <Button color='danger'onClick={() => handleClick('delete')}>Delete Author
+          </Button>
+          {/* <Link to='add-player'>Go to Add Player</Link> */}
+          {
+          editNow && <PlayerForm
+            setPlayers={setPlayers}
+            firebaseKey={firebaseKey}
+            name={name}
+            imageUrl={imageUrl}
+            position={position}
+          />}
         </CardBody>
       </Card>
   );
@@ -49,8 +67,8 @@ export default function PlayerCard({
 
 PlayerCard.propTypes = {
   setPlayers: PropTypes.func,
-  name: PropTypes.string.isRequired,
-  position: PropTypes.string.isRequired,
-  imageUrl: PropTypes.string.isRequired,
-  firebaseKey: PropTypes.string.isRequired
+  name: PropTypes.string,
+  position: PropTypes.string,
+  imageUrl: PropTypes.string,
+  firebaseKey: PropTypes.string
 };

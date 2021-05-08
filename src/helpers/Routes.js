@@ -15,14 +15,15 @@ export default function Routes({ user, players, setPlayers }) {
           path='/add-player'
           component={() => <AddPlayer
             user={user}
+            setPlayers={setPlayers}
           />}
         />
         <Route
           path='/team-roster'
           component={() => <TeamRoster
             user={user}
-            players={players}
             setPlayers={setPlayers}
+            players={players}
             />}
         />
       </Switch>
@@ -33,6 +34,6 @@ export default function Routes({ user, players, setPlayers }) {
 Routes.propTypes = {
   user: PropTypes.any,
   players: PropTypes.array.isRequired,
-  setPlayers: PropTypes.func.isRequired
+  setPlayers: PropTypes.func
 
 };

@@ -3,15 +3,15 @@ import {
   Button, Form, FormGroup, Label, Input
 } from 'reactstrap';
 import PropTypes from 'prop-types';
-import { addPlayer } from '../../helpers/data/playersData';
+import { addPlayer, updatePlayer } from '../../helpers/data/playersData';
 
-export default function PlayerForm({
+const PlayerForm = ({
   setPlayers,
   name,
   imageUrl,
   position,
   firebaseKey,
-}) {
+}) => {
   const [player, setPlayer] = useState({
     name: name || '',
     imageUrl: imageUrl || '',
@@ -28,14 +28,18 @@ export default function PlayerForm({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addPlayer(player).then((playersArray) => setPlayers(playersArray));
+    if (player.firebaseKey) {
+      updatePlayer(player).then((playersArray) => setPlayers(playersArray));
+    } else {
+      addPlayer(player).then((playersArray) => setPlayers(playersArray));
 
-    setPlayer({
-      name: '',
-      imageUrl: '',
-      position: '',
-      firebaseKey: ''
-    });
+      setPlayer({
+        name: '',
+        imageUrl: '',
+        position: '',
+        firebaseKey: ''
+      });
+    }
   };
 
   return (
@@ -78,7 +82,7 @@ export default function PlayerForm({
     </Form>
   </div>
   );
-}
+};
 
 PlayerForm.propTypes = {
   setPlayers: PropTypes.func,
@@ -87,3 +91,5 @@ PlayerForm.propTypes = {
   position: PropTypes.string,
   firebaseKey: PropTypes.string
 };
+
+export default PlayerForm;
