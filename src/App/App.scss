@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+.cardHolder {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+}
+.customizedCard {
+  max-width: 350px;
+  overflow: hidden;
+  // border: none !important;
+ margin-top: auto;
+}

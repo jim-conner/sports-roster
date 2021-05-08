@@ -34,7 +34,7 @@ export default function PlayerCard({
   };
 
   return (
-      <Card body>
+      <Card className='customizedCard' body>
         <CardImg top
           width="100%"
           src={imageUrl}
@@ -51,7 +51,9 @@ export default function PlayerCard({
           </Button>
           <Button color='danger'onClick={() => handleClick('delete')}>Delete Author
           </Button>
-          {editNow && <PlayerForm
+          {/* <Link to='add-player'>Go to Add Player</Link> */}
+          {
+          editNow && <PlayerForm
             setPlayers={setPlayers}
             firebaseKey={firebaseKey}
             name={name}
