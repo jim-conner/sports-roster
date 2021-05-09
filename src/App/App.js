@@ -41,6 +41,7 @@ function App() {
         user={user}
         players={players}
         setPlayers={setPlayers}
+        // setUser={setUser}
       />
     </Router>
   </>

@@ -19,15 +19,19 @@ PrivateRoute.propTypes = {
   user: PropTypes.any
 };
 
-export default function Routes({ user, players, setPlayers }) {
+export default function Routes({
+  user, players, setPlayers, setUser
+}) {
   return (
     <div>
       <Switch>
         <Route
           exact
           path='/'
-          component={Home}
-          user={user}
+          component={() => <Home
+            user={user}
+          />}
+          setUser={setUser}
         />
         <PrivateRoute
           path='/add-player'
@@ -53,6 +57,7 @@ export default function Routes({ user, players, setPlayers }) {
 Routes.propTypes = {
   user: PropTypes.any,
   players: PropTypes.array.isRequired,
-  setPlayers: PropTypes.func
+  setPlayers: PropTypes.func,
+  setUser: PropTypes.func
 
 };
