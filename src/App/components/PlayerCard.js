@@ -36,6 +36,7 @@ export default function PlayerCard({
   return (
       <Card className='customizedCard' body>
         <CardImg top
+          rounded
           width="100%"
           src={imageUrl}
           alt="Player Card"

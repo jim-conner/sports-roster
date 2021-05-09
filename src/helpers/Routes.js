@@ -23,7 +23,8 @@ export default function Routes({ user, players, setPlayers }) {
   return (
     <div>
       <Switch>
-        <Route exact
+        <Route
+          exact
           path='/'
           component={Home}
           user={user}
