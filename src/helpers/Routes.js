@@ -62,6 +62,6 @@ export default function Routes({
 Routes.propTypes = {
   user: PropTypes.any,
   players: PropTypes.array,
-  setPlayers: PropTypes.func
+  setPlayers: PropTypes.func.isRequired
 
 };

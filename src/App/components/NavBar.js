@@ -22,7 +22,12 @@ const NavBar = ({ user }) => {
         <Link className="nav-link" to="/add-player">ADD PLAYER</Link>
       </NavItem>
       <NavItem>
-        <Link className="nav-link" to="/team-roster">TEAM ROSTER</Link>
+        <Link
+          className="nav-link"
+          to="/team-roster"
+          // onClick={() => window.location.reload('team-roster')}
+          >TEAM ROSTER
+        </Link>
       </NavItem>
     </>
   );

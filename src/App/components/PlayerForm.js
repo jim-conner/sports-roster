@@ -20,7 +20,7 @@ const PlayerForm = ({
     imageUrl: imageUrl || '',
     position: position || '',
     firebaseKey: firebaseKey || null,
-    uid: user.uid
+    uid: user.uid || user
   });
 
   const handleInputChange = (e) => {
@@ -35,10 +35,7 @@ const PlayerForm = ({
     if (player.firebaseKey) {
       updatePlayer(player, firebaseKey, uid).then((response) => setPlayers(response));
     } else {
-      // console.warn(addPlayer(player, uid)).then((response));
-      // addPlayer(player, uid).then((response) => setPlayers(response));
-      addPlayer(player, uid).then((playersArray) => (setPlayers(playersArray)));
-      addPlayer(player, uid).then((playersArray) => console.warn((setPlayers(playersArray))));
+      addPlayer(player, user.uid).then((playersArray) => (setPlayers(playersArray)));
 
       setPlayer({
         name: '',
