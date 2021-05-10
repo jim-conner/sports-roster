@@ -4,15 +4,11 @@ Body {
   background-size: inherit;
 }
 
-h1,h2,h3 {
-  color: #85bdbe;
-
-}
-
-h3 {
-  color: #85bdbe;
+:is(h1, h2, h3, h4, h5, h6) {
+  color: whitesmoke;
   text-align: center;
 }
+
 .cardHolder {
   display: flex;
   flex-wrap: wrap;
@@ -25,4 +21,9 @@ h3 {
  margin-top: auto;
  border: none !important;
 
+}
+
+.player-form {
+  padding:10%;
+  border-radius: 1em;
 }

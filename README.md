@@ -1,7 +1,18 @@
-# React Template
+# Baseball Roster App w/ React [![Netlify Status](https://api.netlify.com/api/v1/badges/923b716a-3489-441f-b8e5-2b2f0cd0e3c5/deploy-status)](https://app.netlify.com/sites/jdc-sports-roster/deploys)
+## [Deployed Site](https://jdc-sports-roster.netlify.app/)
 
-**Use this template to get up and running quickly on projects.**
+## About the User 
+The user will be able to view and maintain their baseball team's roster.
+## Features 
+- The user can log in to view their players and team roster.  
+- The user click Add Player in the navbar to 
 
-This is just like the webpack template. Use it, create the repo, connect it to your local and `npm i`.
+### Video Walkthrough
+[Loom video of Sports Roster]()
 
-- [Steps to deploy](https://github.com/nss-nightclass-projects/REACT-Deployment-Netlify)
+
+### Project Screenshot
+![Team Roster Screenshot]()
+
+## Contributor
+- [Jim Conner](https://github.com/jim-conner)
