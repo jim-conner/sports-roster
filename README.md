@@ -12,7 +12,7 @@ The user will be able to view and maintain their baseball team's roster.
 
 
 ### Project Screenshot
-![Team Roster Screenshot]()
+![Team Roster Screenshot](https://github.com/jim-conner/sports-roster/blob/main/public/SportsRosterTeamScreenshot.jpg)
 
 ## Contributor
 - [Jim Conner](https://github.com/jim-conner)
