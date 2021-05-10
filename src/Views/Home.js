@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 export default function Home({ user }) {
   return (
-    <div>
+    <div
+    >
       {
         user
           ? <h3>Welcome back!  <br/> Add a player or view the Team Roster.</h3>
