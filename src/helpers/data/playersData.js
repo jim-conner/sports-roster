@@ -22,9 +22,8 @@ const addPlayer = (player, uid) => new Promise((resolve, reject) => {
       axios.patch(`${dbUrl}/players/${response.data.name}.json`, body)
         .then(() => {
           getPlayers(uid).then((playersArray) => resolve(playersArray));
-        })
-        .catch((error) => reject(error));
-    });
+        });
+    }).catch((error) => reject(error));
 });
 
 const deletePlayer = (firebaseKey, uid) => new Promise((resolve, reject) => {

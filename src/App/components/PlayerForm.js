@@ -20,7 +20,7 @@ const PlayerForm = ({
     imageUrl: imageUrl || '',
     position: position || '',
     firebaseKey: firebaseKey || null,
-    uid: user.uid || ''
+    uid: user.uid
   });
 
   const handleInputChange = (e) => {
@@ -33,19 +33,20 @@ const PlayerForm = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (player.firebaseKey) {
-      updatePlayer(player, firebaseKey, user.uid).then((response) => setPlayers(response));
+      updatePlayer(player, firebaseKey, uid).then((response) => setPlayers(response));
     } else {
-      // addPlayer(player, uid).then((playersArray) => setPlayers(playersArray));
-      addPlayer(player, uid).then((playersArray) => console.warn((playersArray)));
+      // console.warn(addPlayer(player, uid)).then((response));
+      // addPlayer(player, uid).then((response) => setPlayers(response));
+      addPlayer(player, uid).then((playersArray) => (setPlayers(playersArray)));
+      addPlayer(player, uid).then((playersArray) => console.warn((setPlayers(playersArray))));
 
-      // setPlayer({
-      //   name: '',
-      //   imageUrl: '',
-      //   position: '',
-      //   firebaseKey: '',
-      //   uid: ''
-      // });
-      // console.warn(setPlayers(playersArray));
+      setPlayer({
+        name: '',
+        imageUrl: '',
+        position: '',
+        firebaseKey: '',
+        uid: ''
+      });
     }
   };
 
@@ -92,14 +93,14 @@ const PlayerForm = ({
 };
 
 PlayerForm.propTypes = {
-  setPlayers: PropTypes.func,
+  setPlayers: PropTypes.func.isRequired,
   name: PropTypes.string,
   imageUrl: PropTypes.string,
   position: PropTypes.string,
   firebaseKey: PropTypes.string,
   uid: PropTypes.string,
   user: PropTypes.any,
-  players: PropTypes.array,
+  // players: PropTypes.array,
 
 };
 

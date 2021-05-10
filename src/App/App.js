@@ -15,8 +15,6 @@ function App() {
     getPlayers().then((response) => setPlayers(response));
   }, []);
 
-  // console.warn(user);
-
   useEffect(() => {
     firebase.auth().onAuthStateChanged((userInState) => {
       if (userInState) {

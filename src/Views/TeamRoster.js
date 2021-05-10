@@ -38,6 +38,6 @@ export default function TeamRoster({ user, players, setPlayers }) {
 
 TeamRoster.propTypes = {
   players: PropTypes.array,
-  setPlayers: PropTypes.func,
+  setPlayers: PropTypes.func.isRequired,
   user: PropTypes.any
 };

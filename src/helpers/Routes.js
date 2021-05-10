@@ -33,6 +33,7 @@ export default function Routes({
           />}
         />
         <PrivateRoute
+          exact
           path='/add-player'
           user={user}
           component={() => <AddPlayer
@@ -42,8 +43,10 @@ export default function Routes({
           />}
         />
         <PrivateRoute
-          user={user}
+          exact
           path='/team-roster'
+          user={user}
+          setPlayers={setPlayers}
           component={() => <TeamRoster
             user={user}
             players={players}
