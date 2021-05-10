@@ -36,7 +36,9 @@ export default function Routes({
           path='/add-player'
           user={user}
           component={() => <AddPlayer
-            setPlayers={setPlayers} user={user}
+            user={user}
+            players={players}
+            setPlayers={setPlayers}
           />}
         />
         <PrivateRoute
@@ -44,8 +46,8 @@ export default function Routes({
           path='/team-roster'
           component={() => <TeamRoster
             user={user}
-            setPlayers={setPlayers}
             players={players}
+            setPlayers={setPlayers}
             />}
         />
         <PrivateRoute path='*' component={NotFound}/>

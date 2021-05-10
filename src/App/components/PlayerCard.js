@@ -24,7 +24,7 @@ const PlayerCard = ({
   const handleClick = (type) => {
     switch (type) {
       case 'delete':
-        deletePlayer(firebaseKey, uid)
+        deletePlayer(firebaseKey)
           .then((playersArray) => setPlayers(playersArray));
         break;
       case 'edit':

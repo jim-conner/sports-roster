@@ -7,6 +7,7 @@ import { addPlayer, updatePlayer } from '../../helpers/data/playersData';
 
 const PlayerForm = ({
   setPlayers,
+  // players,
   name,
   imageUrl,
   position,
@@ -32,9 +33,10 @@ const PlayerForm = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (player.firebaseKey) {
-      updatePlayer(player, firebaseKey, uid).then((response) => setPlayers(response));
+      updatePlayer(player, firebaseKey, user.uid).then((response) => setPlayers(response));
     } else {
-      addPlayer(player, uid).then((response) => setPlayers(response));
+      // addPlayer(player, uid).then((playersArray) => setPlayers(playersArray));
+      addPlayer(player, uid).then((playersArray) => console.warn((playersArray)));
 
       // setPlayer({
       //   name: '',
@@ -43,6 +45,7 @@ const PlayerForm = ({
       //   firebaseKey: '',
       //   uid: ''
       // });
+      // console.warn(setPlayers(playersArray));
     }
   };
 
@@ -95,7 +98,9 @@ PlayerForm.propTypes = {
   position: PropTypes.string,
   firebaseKey: PropTypes.string,
   uid: PropTypes.string,
-  user: PropTypes.any
+  user: PropTypes.any,
+  players: PropTypes.array,
+
 };
 
 export default PlayerForm;

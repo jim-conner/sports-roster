@@ -11,9 +11,9 @@ function App() {
   const [user, setUser] = useState(null);
   const [players, setPlayers] = useState([]);
 
-  // useEffect(() => {
-  //   getPlayers().then((response) => setPlayers(response));
-  // }, []);
+  useEffect(() => {
+    getPlayers().then((response) => setPlayers(response));
+  }, []);
 
   // console.warn(user);
 
@@ -26,8 +26,8 @@ function App() {
           uid: userInState.uid,
           userName: userInState.email.split('@gmail.com')[0]
         };
-        getPlayers(userInState.uid).then((playersArray) => setPlayers(playersArray));
         setUser(userInfoObject);
+        getPlayers(userInState.uid).then((playersArray) => setPlayers(playersArray));
       } else if (user || user === null) {
         setUser(false);
         setPlayers([]);

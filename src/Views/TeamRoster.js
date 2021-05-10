@@ -4,7 +4,17 @@ import PlayerCard from '../App/components/PlayerCard';
 // import { getPlayers } from '../helpers/data/playersData';
 
 export default function TeamRoster({ user, players, setPlayers }) {
-  // getPlayers(user.uid).then((response) => setPlayers(response));
+  // <>
+  // {
+  //   getPlayers(user.uid).then((playersArray) => setPlayers(playersArray))
+  // };
+  // {/* {getPlayers(user).then((response) => setPlayers(response))} */}
+  // </>;
+  // useEffect(() => {
+  //   if (user) {
+  //     getPlayers(user.uid).then((playersArray) => setPlayers(playersArray));
+  //   }
+  // }, []);
   return (
     <>
       <h1>Team Roster</h1>
