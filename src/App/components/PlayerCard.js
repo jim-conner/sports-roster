@@ -41,7 +41,7 @@ const PlayerCard = ({
         key={firebaseKey}
         color='transparent'
         >
-        <CardImg top width="100%" src={imageUrl} alt="Player Card"
+        <CardImg top width="100%" height="200px"src={imageUrl} alt="Player Card"
         />
         <CardBody>
           <CardTitle tag="h4">{name}</CardTitle>
