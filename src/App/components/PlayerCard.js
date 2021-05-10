@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import { deletePlayer } from '../../helpers/data/playersData';
 import PlayerForm from './PlayerForm';
 
-export default function PlayerCard({
+const PlayerCard = ({
   uid,
   user,
   setPlayers,
@@ -19,12 +19,12 @@ export default function PlayerCard({
   name,
   position,
   imageUrl,
-}) {
+}) => {
   const [editNow, setEditNow] = useState(false);
   const handleClick = (type) => {
     switch (type) {
       case 'delete':
-        deletePlayer(firebaseKey)
+        deletePlayer(firebaseKey, uid)
           .then((playersArray) => setPlayers(playersArray));
         break;
       case 'edit':
@@ -37,13 +37,9 @@ export default function PlayerCard({
 
   return (
       <Card body className='customizedCard'
-      key={firebaseKey} id={uid}
+      key={firebaseKey}
         >
-        <CardImg top
-          rounded
-          width="100%"
-          src={imageUrl}
-          alt="Player Card"
+        <CardImg top width="100%" src={imageUrl} alt="Player Card"
         />
         <CardBody>
           <CardTitle tag="h4">{name}</CardTitle>
@@ -66,7 +62,7 @@ export default function PlayerCard({
         </CardBody>
       </Card>
   );
-}
+};
 
 PlayerCard.propTypes = {
   setPlayers: PropTypes.func,
@@ -77,3 +73,5 @@ PlayerCard.propTypes = {
   position: PropTypes.string,
   imageUrl: PropTypes.string,
 };
+
+export default PlayerCard;

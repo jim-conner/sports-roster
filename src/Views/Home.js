@@ -15,5 +15,4 @@ export default function Home({ user }) {
 
 Home.propTypes = {
   user: PropTypes.any,
-  // setUser: PropTypes.func
 };

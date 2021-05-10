@@ -20,7 +20,7 @@ PrivateRoute.propTypes = {
 };
 
 export default function Routes({
-  user, players, setPlayers, setUser
+  user, players, setPlayers
 }) {
   return (
     <div>
@@ -31,19 +31,19 @@ export default function Routes({
           component={() => <Home
             user={user}
           />}
-          setUser={setUser}
         />
         <PrivateRoute
           path='/add-player'
           user={user}
           component={() => <AddPlayer
-            setPlayers={setPlayers}
+            setPlayers={setPlayers} user={user}
           />}
         />
         <PrivateRoute
           user={user}
           path='/team-roster'
           component={() => <TeamRoster
+            user={user}
             setPlayers={setPlayers}
             players={players}
             />}
@@ -56,8 +56,7 @@ export default function Routes({
 
 Routes.propTypes = {
   user: PropTypes.any,
-  players: PropTypes.array.isRequired,
-  setPlayers: PropTypes.func,
-  setUser: PropTypes.func
+  players: PropTypes.array,
+  setPlayers: PropTypes.func
 
 };

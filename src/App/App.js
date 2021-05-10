@@ -4,18 +4,18 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import NavBar from './components/NavBar';
 import Routes from '../helpers/Routes';
-import './App.scss';
 import { getPlayers } from '../helpers/data/playersData';
+import './App.scss';
 
 function App() {
   const [user, setUser] = useState(null);
   const [players, setPlayers] = useState([]);
 
-  useEffect(() => {
-    getPlayers().then((response) => setPlayers(response));
-  }, []);
+  // useEffect(() => {
+  //   getPlayers().then((response) => setPlayers(response));
+  // }, []);
 
-  // console.warn(players);
+  // console.warn(user);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((userInState) => {
@@ -24,11 +24,13 @@ function App() {
           fullName: userInState.displayName,
           profileImage: userInState.photoURL,
           uid: userInState.uid,
-          user: userInState.email.split('@gmail.com')[0]
+          userName: userInState.email.split('@gmail.com')[0]
         };
+        getPlayers(userInState.uid).then((playersArray) => setPlayers(playersArray));
         setUser(userInfoObject);
       } else if (user || user === null) {
         setUser(false);
+        setPlayers([]);
       }
     });
   }, []);
@@ -41,7 +43,6 @@ function App() {
         user={user}
         players={players}
         setPlayers={setPlayers}
-        // setUser={setUser}
       />
     </Router>
   </>

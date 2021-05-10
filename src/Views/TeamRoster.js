@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PlayerCard from '../App/components/PlayerCard';
+// import { getPlayers } from '../helpers/data/playersData';
 
 export default function TeamRoster({ user, players, setPlayers }) {
+  // getPlayers(user.uid).then((response) => setPlayers(response));
   return (
     <>
       <h1>Team Roster</h1>
@@ -11,10 +13,10 @@ export default function TeamRoster({ user, players, setPlayers }) {
         <PlayerCard
           key={playerInfo.firebaseKey}
           firebaseKey={playerInfo.firebaseKey}
+          user={user}
           imageUrl={playerInfo.imageUrl}
           name={playerInfo.name}
           position={playerInfo.position}
-          user={user.uid}
           uid={playerInfo.uid}
           setPlayers={setPlayers}
         />
@@ -25,7 +27,7 @@ export default function TeamRoster({ user, players, setPlayers }) {
 }
 
 TeamRoster.propTypes = {
-  players: PropTypes.array.isRequired,
+  players: PropTypes.array,
   setPlayers: PropTypes.func,
   user: PropTypes.any
 };
