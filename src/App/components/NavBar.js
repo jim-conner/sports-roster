@@ -47,7 +47,6 @@ const NavBar = ({ user }) => {
   return (
     <div>
       <Navbar color="dark" dark expand="md">
-      {/* <NavbarBrand className="mr-auto"></NavbarBrand> */}
         <Link className="navbar-brand" to="/">HOME</Link>
         <NavbarToggler onClick={toggleNavbar} className="mr-2"/>
         <Collapse isOpen={!collapsed} navbar>

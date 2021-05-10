@@ -11,18 +11,20 @@ import PropTypes from 'prop-types';
 import { deletePlayer } from '../../helpers/data/playersData';
 import PlayerForm from './PlayerForm';
 
-export default function PlayerCard({
+const PlayerCard = ({
+  uid,
+  user,
   setPlayers,
   firebaseKey,
   name,
   position,
-  imageUrl
-}) {
+  imageUrl,
+}) => {
   const [editNow, setEditNow] = useState(false);
   const handleClick = (type) => {
     switch (type) {
       case 'delete':
-        deletePlayer(firebaseKey)
+        deletePlayer(firebaseKey, uid)
           .then((playersArray) => setPlayers(playersArray));
         break;
       case 'edit':
@@ -34,28 +36,27 @@ export default function PlayerCard({
   };
 
   return (
-      <Card className='customizedCard' body>
-        <CardImg top
-          width="100%"
-          src={imageUrl}
-          alt="Player Card"
+      <Card body
+        className='customizedCard'
+        key={firebaseKey}
+        color='transparent'
+        >
+        <CardImg top width="100%" src={imageUrl} alt="Player Card"
         />
         <CardBody>
           <CardTitle tag="h4">{name}</CardTitle>
           <CardText tag="h5">{position}</CardText>
-          {/* <Button color='primary'onClick={() => handleClick('view')}>
-            View Author
-          </Button> */}
           <Button color='info' onClick={() => handleClick('edit')}>
             {editNow ? 'Close Form' : 'Edit Form'}
           </Button>
           <Button color='danger'onClick={() => handleClick('delete')}>Delete Author
           </Button>
-          {/* <Link to='add-player'>Go to Add Player</Link> */}
           {
           editNow && <PlayerForm
             setPlayers={setPlayers}
             firebaseKey={firebaseKey}
+            uid={uid}
+            user={user}
             name={name}
             imageUrl={imageUrl}
             position={position}
@@ -63,12 +64,16 @@ export default function PlayerCard({
         </CardBody>
       </Card>
   );
-}
+};
 
 PlayerCard.propTypes = {
   setPlayers: PropTypes.func,
+  uid: PropTypes.string,
+  user: PropTypes.any,
+  firebaseKey: PropTypes.string,
   name: PropTypes.string,
   position: PropTypes.string,
   imageUrl: PropTypes.string,
-  firebaseKey: PropTypes.string
 };
+
+export default PlayerCard;
