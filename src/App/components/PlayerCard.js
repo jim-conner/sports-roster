@@ -36,8 +36,10 @@ const PlayerCard = ({
   };
 
   return (
-      <Card body className='customizedCard'
-      key={firebaseKey}
+      <Card body
+        className='customizedCard'
+        key={firebaseKey}
+        color='transparent'
         >
         <CardImg top width="100%" src={imageUrl} alt="Player Card"
         />

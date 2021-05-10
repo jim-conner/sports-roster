@@ -7,7 +7,7 @@ export default function Home({ user }) {
     >
       {
         user
-          ? <h3>Welcome back!  <br/> Add a player or view the Team Roster.</h3>
+          ? <h3>Welcome back!  <br/> Add a player or view your Team Roster.</h3>
           : <h3>Welcome! <br/> Please sign in to view your Team Roster</h3>
       }
     </div>
