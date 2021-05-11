@@ -3,12 +3,14 @@
 
 ## About the User 
 The user will be able to view and maintain their baseball team's roster.
-## Features 
+## Features
 - The user can log in to view their players and team roster.  
-- The user click Add Player in the navbar to 
+- The user click Add Player to show a form and add a player.
+- The user can view, update, and delete players from the Team Roster view.
+Tech new on this project: React, Firebase authentication within React Framework, SASS within React
 
 ### Video Walkthrough
-[Loom video of Sports Roster]()
+[Loom video of Sports Roster](https://www.loom.com/share/e8151376c9c74283bb217932127c6505)
 
 
 ### Project Screenshot
