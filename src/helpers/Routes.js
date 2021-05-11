@@ -33,19 +33,24 @@ export default function Routes({
           />}
         />
         <PrivateRoute
+          exact
           path='/add-player'
           user={user}
           component={() => <AddPlayer
-            setPlayers={setPlayers} user={user}
+            user={user}
+            players={players}
+            setPlayers={setPlayers}
           />}
         />
         <PrivateRoute
-          user={user}
+          exact
           path='/team-roster'
+          user={user}
+          setPlayers={setPlayers}
           component={() => <TeamRoster
             user={user}
-            setPlayers={setPlayers}
             players={players}
+            setPlayers={setPlayers}
             />}
         />
         <PrivateRoute path='*' component={NotFound}/>
@@ -57,6 +62,6 @@ export default function Routes({
 Routes.propTypes = {
   user: PropTypes.any,
   players: PropTypes.array,
-  setPlayers: PropTypes.func
+  setPlayers: PropTypes.func.isRequired
 
 };

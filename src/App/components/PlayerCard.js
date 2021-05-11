@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// import { useHistory } from 'react-router-dom';
 import {
   Button,
   CardImg,
@@ -21,10 +22,11 @@ const PlayerCard = ({
   imageUrl,
 }) => {
   const [editNow, setEditNow] = useState(false);
+  // const history = useHistory();
   const handleClick = (type) => {
     switch (type) {
       case 'delete':
-        deletePlayer(firebaseKey, uid)
+        deletePlayer(firebaseKey, user.uid)
           .then((playersArray) => setPlayers(playersArray));
         break;
       case 'edit':

@@ -15,8 +15,6 @@ function App() {
   //   getPlayers().then((response) => setPlayers(response));
   // }, []);
 
-  // console.warn(user);
-
   useEffect(() => {
     firebase.auth().onAuthStateChanged((userInState) => {
       if (userInState) {
@@ -24,10 +22,10 @@ function App() {
           fullName: userInState.displayName,
           profileImage: userInState.photoURL,
           uid: userInState.uid,
-          userName: userInState.email.split('@gmail.com')[0]
+          userName: userInState.email.split('@')[0]
         };
-        getPlayers(userInState.uid).then((playersArray) => setPlayers(playersArray));
         setUser(userInfoObject);
+        getPlayers(userInState.uid).then((playersArray) => setPlayers(playersArray));
       } else if (user || user === null) {
         setUser(false);
         setPlayers([]);

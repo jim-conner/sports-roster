@@ -5,8 +5,14 @@ const dbUrl = firebaseConfig.databaseURL;
 
 const getPlayers = (uid) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/players.json?orderBy="uid"&equalTo="${uid}"`)
-    .then((response) => resolve(Object.values(response.data)))
-    .catch((error) => reject(error));
+    .then((response) => {
+      if (response.data) {
+        const playersArray = Object.values(response.data);
+        resolve(playersArray);
+      } else {
+        resolve([]);
+      }
+    }).catch((error) => reject(error));
 });
 
 const addPlayer = (player, uid) => new Promise((resolve, reject) => {
@@ -16,9 +22,8 @@ const addPlayer = (player, uid) => new Promise((resolve, reject) => {
       axios.patch(`${dbUrl}/players/${response.data.name}.json`, body)
         .then(() => {
           getPlayers(uid).then((playersArray) => resolve(playersArray));
-        })
-        .catch((error) => reject(error));
-    });
+        });
+    }).catch((error) => reject(error));
 });
 
 const deletePlayer = (firebaseKey, uid) => new Promise((resolve, reject) => {
